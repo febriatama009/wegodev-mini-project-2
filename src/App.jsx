@@ -12,6 +12,7 @@ import {
 const App = () => {
   //state
   const [emojisData, setEmojisData] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -34,14 +35,26 @@ const App = () => {
     fetchData();
   }, []);
 
+  //handle search emoji
+  const handleSearchEmoji = (e) => {
+    setSearchText(e.target.value);
+  };
+
   return (
-    <div className="bg-slate-600 h-fit">
+    <div className="bg-slate-600 overflow-y-auto h-screen">
       <Navbar />
-      <SearchBar />
+      <SearchBar onChange={handleSearchEmoji} value={searchText} />
       <EmojisContainer>
         {loading && <Loading />}
         {error && <Empty text="Something Wrong Happends!" />}
-        {emojisData.length > 0 && <Emojis emojisData={emojisData} />}
+        {/* {filterEmoji.length > 0 ? ( // Render filtered emojis if available
+          <Emojis emojisData={filteredEmojis} />
+        ) : (
+          emojisData.length > 0 && <Emojis emojisData={emojisData} />
+        )} */}
+        {emojisData.length > 0 && (
+          <Emojis emojisData={emojisData} searchText={searchText} />
+        )}
       </EmojisContainer>
     </div>
   );

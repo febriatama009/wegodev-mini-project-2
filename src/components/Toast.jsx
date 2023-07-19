@@ -21,7 +21,7 @@ const Toast = () => {
         </div>
         <div className="ml-3">
           <p className="text-sm text-gray-700 dark:text-gray-400">
-            Copied Successfully!
+            Emoji Copied Successfully!
           </p>
         </div>
       </div>
